@@ -29,13 +29,13 @@ tidsintervall = "month"
 location = "~/Documents/master/resultater/ctsm/riktige_singlesites30/"
 
 for Site in Sites:
-	site1920 = xr.concat([xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.1900-01-01-00000.nc")[variable],
-						  xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.1910-01-01-00000.nc")[variable],
-						  xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.1920-01-01-00000.nc")[variable]],dim="time")
+	site1920 = xr.concat([xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.1900-01-01-00000.nc")[variable],
+						  xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.1910-01-01-00000.nc")[variable],
+						  xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.1920-01-01-00000.nc")[variable]],dim="time")
 
-	site2000 = xr.concat([xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.1985-01-01-00000.nc")[variable],
-						  xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.1995-01-01-00000.nc")[variable],
-						  xr.open_dataset(location+Site+"_SDU/lnd/hist/"+Site+"_SDU.clm2.h0.2005-01-01-00000.nc")[variable]],dim="time")
+	site2000 = xr.concat([xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.1985-01-01-00000.nc")[variable],
+						  xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.1995-01-01-00000.nc")[variable],
+						  xr.open_dataset(location+Site+"_birch_dominated_SDU/lnd/hist/"+Site+"_birch_dominated_SDU.clm2.h0.2005-01-01-00000.nc")[variable]],dim="time")
 
 	site1920NoTree = xr.concat([xr.open_dataset(location+Site+"_no_trees_SDU/lnd/hist/"+Site+"_no_trees_SDU.clm2.h0.1900-01-01-00000.nc")[variable],
 								xr.open_dataset(location+Site+"_no_trees_SDU/lnd/hist/"+Site+"_no_trees_SDU.clm2.h0.1910-01-01-00000.nc")[variable],
@@ -95,7 +95,7 @@ for Site in Sites:
 	plt.legend()
 	plt.title("Change in " + variable +  " from 1920 climate with no trees with different pertubations "+Site)
 	#plt.title("Fraction of snow covered area"+Site)
-	plt.savefig("../figurer/monthlyChange"+variable+"-"+Site+".pdf",format="pdf",dpi=300)
+	plt.savefig("../figurer/monthlyChangeBirch"+variable+"-"+Site+".pdf",format="pdf",dpi=300)
 
 plt.figure(figsize=(10,5))
 plt.rcParams.update({'font.size': 12})
@@ -112,7 +112,7 @@ plt.ylabel("$\Delta$ Energy Flux [W/$m^2$]")
 plt.xticks([0,1,2,3,4,5,6,7,8,9,10,11],xticks,rotation=20)
 plt.title("Change in " + variable +  " from 1900-29 climate with no trees with different pertubations average")
 #plt.title("Fraction of snow covered area average")
-plt.savefig("../figurer/monthlyChange"+variable+"-"+"average.pdf",format="pdf",dpi=300)
+plt.savefig("../figurer/monthlyChangeBirch"+variable+"-"+"average.pdf",format="pdf",dpi=300)
 
 t = time.localtime()
 end_time = time.strftime("%H:%M:%S", t)

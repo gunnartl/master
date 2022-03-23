@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 
-sites = ["GROT2"]#["BESS1","GROT2","ROND3","KNUT3","DOVR0"]
+sites = ["BESS1","GROT2","ROND3","KNUT3","DOVR0"]
 variables = ["FGR","FIRA","FSH","EFLX_LH_TOT","FSR","FSA"]
 names = ["G","NLW","SH","LH","SR$_{R}$","SR$_{A}$"]
 
@@ -14,16 +14,16 @@ day_change_TS = np.zeros((len(variables),4))
 change_S = np.zeros((len(variables),4))
 day_change_S = np.zeros((len(variables),4))
 
-location = "~/Documents/master/resultater/ctsm/singleSites30/"
+location = "~/Documents/master/resultater/ctsm/riktige_singlesites30/"
 
 for site in sites:
 	#site1920 = xr.open_dataset("~/Documents/master/resultater/ctsm/singlesites/"+site+"_SDU/lnd/hist/"+site+"_SDU.clm2.h0.1920-01-01-00000.nc")[variables]
 	#site1920NoTreeOrShrub = xr.open_dataset("~/Documents/master/resultater/ctsm/singlesites/"+site+"_no_trees_or_shrubs_SDU/lnd/hist/"+site+"_no_trees_or_shrubs_SDU.clm2.h0.1920-01-01-00000.nc")[variables]
 	#site1920NoTree = xr.open_dataset("~/Documents/master/resultater/ctsm/singlesites/"+site+"_no_trees_SDU/lnd/hist/"+site+"_no_trees_SDU.clm2.h0.1920-01-01-00000.nc")[variables]
 
-	site1920 = xr.concat([xr.open_dataset(location+site+"_SDU/lnd/hist/"+site+"_SDU.clm2.h0.1900-01-01-00000.nc"),
-						  xr.open_dataset(location+site+"_SDU/lnd/hist/"+site+"_SDU.clm2.h0.1910-01-01-00000.nc"),
-						  xr.open_dataset(location+site+"_SDU/lnd/hist/"+site+"_SDU.clm2.h0.1920-01-01-00000.nc")],dim="time")
+	site1920 = xr.concat([xr.open_dataset(location+site+"_birch_dominated_SDU/lnd/hist/"+site+"_birch_dominated_SDU.clm2.h0.1900-01-01-00000.nc"),
+						  xr.open_dataset(location+site+"_birch_dominated_SDU/lnd/hist/"+site+"_birch_dominated_SDU.clm2.h0.1910-01-01-00000.nc"),
+						  xr.open_dataset(location+site+"_birch_dominated_SDU/lnd/hist/"+site+"_birch_dominated_SDU.clm2.h0.1920-01-01-00000.nc")],dim="time")
 
 
 	site1920NoTree = xr.concat([xr.open_dataset(location+site+"_no_trees_SDU/lnd/hist/"+site+"_no_trees_SDU.clm2.h0.1900-01-01-00000.nc"),
@@ -86,6 +86,7 @@ for i in range(4):
 ax[3].legend(bbox_to_anchor=(0.1,0), loc="lower left", 
                 bbox_transform=fig.transFigure, ncol=2)
 fig.text(0.5, 0.03, '$\Delta$ Energy flux [W/m$^2$]', ha='center',fontsize = 14)
-fig.suptitle("Energy balance response to new vegetation at Grotli",fontsize=20)
-fig.savefig("../figurer/energyBalanceBarplot-"+site[:-1]+"1920.pdf",format="pdf",dpi=300)
+fig.suptitle("Energy balance response to new vegetation in mounanious south Norway",fontsize=20)
+#fig.savefig("../figurer/energyBalanceBarplotBirch-"+site[:-1]+"1920.pdf",format="pdf",dpi=300)
+fig.savefig("../figurer/energyBalanceBarplotBirch-"+"average"+"1920.pdf",format="pdf",dpi=300)
 plt.show()
